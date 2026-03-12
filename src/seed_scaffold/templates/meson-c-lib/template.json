@@ -1,0 +1,6 @@
+{
+  "id": "meson-c-lib",
+  "name": "Meson C Library",
+  "description": "Meson-based C11 static library with tests, CI, and pkg-config metadata.",
+  "files_dir": "files"
+}

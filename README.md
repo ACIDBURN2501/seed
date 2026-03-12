@@ -1,0 +1,152 @@
+# seed
+
+Reusable project scaffolding for small, opinionated starter templates.
+
+The legacy single-template `template/` layout has been removed. Built-in
+templates now live under `src/seed_scaffold/templates/<template-id>/`.
+
+See `docs/ARCHITECTURE.md` for maintainer notes on how rendering works and how
+to add new templates.
+
+## Current Scope
+
+- Ships with one built-in template: `meson-c-lib`
+- Generates a Meson-based C11 static library project
+- Includes unit test scaffolding, CI, formatting config, and a license file
+- Supports template discovery through package manifests in `src/seed_scaffold/templates/*/template.json`
+
+## Features
+
+- Placeholder substitution in both file contents and file paths
+- Template selection with `--template`
+- Safe output handling with `--dry-run` and `--force`
+- Metadata injection for author and copyright year
+- Optional git repository initialization
+- End-to-end tests that validate generated projects build with Meson
+
+## Installation
+
+### From PyPI or pipx
+
+Once the package has been published, install it with:
+
+```sh
+pip install seed-scaffold
+# or
+pipx install seed-scaffold
+```
+
+This installs the CLI entry points `seed` and `seed-scaffold`.
+
+### From a source checkout
+
+```sh
+git clone <your-repo-url> seed
+cd seed
+python3 -m pip install -e .
+python3 -m seed_scaffold --list-templates
+```
+
+Validation and generated-project smoke tests expect these tools to be available:
+
+- `python3`
+- `meson`
+- `ninja`
+- a C compiler such as `cc`
+
+For development tooling, install the package with dev extras:
+
+```sh
+python3 -m pip install -e .[dev]
+```
+
+## Usage
+
+List available templates:
+
+```sh
+seed --list-templates
+```
+
+Generate a new project:
+
+```sh
+seed \
+    --template meson-c-lib \
+    --name "My Library" \
+    --version 1.0.0 \
+    --description "A small Meson-based C library" \
+    --author "Jane Developer" \
+    --init-git
+```
+
+Preview output without writing files:
+
+```sh
+seed \
+    --template meson-c-lib \
+    --name "Preview Library" \
+    --version 0.1.0 \
+    --description "Dry-run example" \
+    --dry-run
+```
+
+## Arguments
+
+| Argument | Short | Required | Description |
+|---|---|---|---|
+| `--name` | `-n` | Yes* | Human-friendly project name |
+| `--slug` |  | No | Filesystem/API slug; defaults to a sanitized form of `--name` |
+| `--version` | `-v` | Yes* | Initial version in `X.Y.Z` format |
+| `--description` | `-d` | Yes* | Short project description |
+| `--author` |  | No | Copyright holder for generated files |
+| `--year` |  | No | Copyright year (default: current year) |
+| `--template` |  | No | Template ID to render (default: `meson-c-lib`) |
+| `--output` | `-o` | No | Output directory (default: current directory / project slug) |
+| `--init-git` |  | No | Run `git init` in the generated project |
+| `--dry-run` |  | No | Print planned output without writing files |
+| `--force` |  | No | Allow writing into an existing empty output directory |
+| `--list-templates` |  | No | List available templates and exit |
+
+`*` Not required when using `--list-templates`.
+
+## Template Layout
+
+Each template lives under `src/seed_scaffold/templates/<template-id>/` and
+contains:
+
+- `template.json` for template metadata
+- `files/` for rendered project files
+- placeholder-based file names such as `__PROJECT_SLUG__.h`
+
+## Repository Layout
+
+- `src/seed_scaffold/cli.py` packaged CLI implementation
+- `docs/ARCHITECTURE.md` maintainer guide for adding templates
+- `src/seed_scaffold/templates/` built-in templates
+- `tests/` scaffolder test suite
+- `.github/workflows/ci.yml` repository CI
+
+## Validation
+
+The repository includes Python tests that cover:
+
+- CLI argument validation
+- placeholder substitution
+- safe output behavior
+- optional git initialization
+- end-to-end Meson configure/build/test for generated projects
+
+Run them with:
+
+```sh
+black --check .
+flake8 .
+python3 -m unittest discover -s tests -v
+```
+
+## Roadmap
+
+- Add more templates beyond Meson/C
+- Expand template manifests with richer metadata and options
+- Publish the package to PyPI once the interface is stable

@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "seed-scaffold"
+version = "0.1.0"
+description = "Reusable project scaffolding for small starter templates"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+  { name = "Aaron James Long" }
+]
+keywords = ["scaffold", "template", "meson", "codegen", "project-generator"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Code Generators"
+]
+
+[project.optional-dependencies]
+dev = [
+  "black>=24.0.0",
+  "build>=1.2.0",
+  "flake8>=7.0.0",
+  "meson>=1.0.0",
+  "ninja>=1.11.0"
+]
+
+[project.scripts]
+seed = "seed_scaffold.cli:main"
+seed-scaffold = "seed_scaffold.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = false
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+seed_scaffold = [
+  "templates/**/.clang-format",
+  "templates/**/.gitignore",
+  "templates/**/.github/workflows/*.yml",
+  "templates/**/*.json",
+  "templates/**/*.md",
+  "templates/**/*.txt",
+  "templates/**/*.in",
+  "templates/**/*.c",
+  "templates/**/*.h",
+  "templates/**/*.build",
+  "templates/**/LICENSE"
+]
+
+[tool.black]
+line-length = 79
+target-version = ["py311", "py312"]
