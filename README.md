@@ -2,12 +2,6 @@
 
 Reusable project scaffolding for small, opinionated starter templates.
 
-The legacy single-template `template/` layout has been removed. Built-in
-templates now live under `src/seed_scaffold/templates/<template-id>/`.
-
-See `docs/ARCHITECTURE.md` for maintainer notes on how rendering works and how
-to add new templates.
-
 ## Current Scope
 
 - Ships with one built-in template: `meson-c-lib`
@@ -110,22 +104,9 @@ seed \
 
 `*` Not required when using `--list-templates`.
 
-## Template Layout
+## Adding templates 
 
-Each template lives under `src/seed_scaffold/templates/<template-id>/` and
-contains:
-
-- `template.json` for template metadata
-- `files/` for rendered project files
-- placeholder-based file names such as `__PROJECT_SLUG__.h`
-
-## Repository Layout
-
-- `src/seed_scaffold/cli.py` packaged CLI implementation
-- `docs/ARCHITECTURE.md` maintainer guide for adding templates
-- `src/seed_scaffold/templates/` built-in templates
-- `tests/` scaffolder test suite
-- `.github/workflows/ci.yml` repository CI
+- See `docs/ARCHITECTURE.md` for adding templates and maintainer information
 
 ## Validation
 
