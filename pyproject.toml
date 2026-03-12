@@ -35,7 +35,6 @@ dev = [
 ]
 
 [project.scripts]
-seed = "seed_scaffold.cli:main"
 seed-scaffold = "seed_scaffold.cli:main"
 
 [tool.setuptools]

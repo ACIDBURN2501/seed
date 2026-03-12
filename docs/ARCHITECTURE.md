@@ -1,6 +1,6 @@
 # Architecture
 
-This document explains how `seed` is structured today, how project generation
+This document explains how `seed-scaffold` is structured today, how project generation
 works, and how to add a new template safely.
 
 ## Goals
@@ -23,8 +23,7 @@ The packaged CLI in `src/seed_scaffold/cli.py` follows this sequence:
 
 Use the tool through one of these entry points:
 
-- installed CLI: `seed ...`
-- installed CLI alias: `seed-scaffold ...`
+- installed CLI: `seed-scaffold ...`
 - source checkout: `python -m seed_scaffold ...`
 
 The renderer applies substitutions to:

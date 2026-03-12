@@ -1,4 +1,4 @@
-# seed
+# seed-scaffold
 
 Reusable project scaffolding for small, opinionated starter templates.
 
@@ -30,13 +30,13 @@ pip install seed-scaffold
 pipx install seed-scaffold
 ```
 
-This installs the CLI entry points `seed` and `seed-scaffold`.
+This installs the CLI entry point `seed-scaffold`.
 
 ### From a source checkout
 
 ```sh
-git clone <your-repo-url> seed
-cd seed
+git clone <your-repo-url> seed-scaffold
+cd seed-scaffold
 python3 -m pip install -e .
 python3 -m seed_scaffold --list-templates
 ```
@@ -59,13 +59,13 @@ python3 -m pip install -e .[dev]
 List available templates:
 
 ```sh
-seed --list-templates
+seed-scaffold --list-templates
 ```
 
 Generate a new project:
 
 ```sh
-seed \
+seed-scaffold \
     --template meson-c-lib \
     --name "My Library" \
     --version 1.0.0 \
@@ -77,7 +77,7 @@ seed \
 Preview output without writing files:
 
 ```sh
-seed \
+seed-scaffold \
     --template meson-c-lib \
     --name "Preview Library" \
     --version 0.1.0 \
