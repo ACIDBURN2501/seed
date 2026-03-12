@@ -97,9 +97,6 @@ seed-scaffold \
 
 `*` Not required when using `--list-templates`.
 
-## Adding templates 
+## Adding templates
 
-- See `docs/ARCHITECTURE.md` for adding templates and maintainer information
-
-For validation details, current scope, and roadmap notes, see
-`docs/ARCHITECTURE.md`.
+See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for adding templates, maintainer information, validation details, current scope, and roadmap notes.
