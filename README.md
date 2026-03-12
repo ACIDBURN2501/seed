@@ -2,13 +2,6 @@
 
 Reusable project scaffolding for small, opinionated starter templates.
 
-## Current Scope
-
-- Ships with one built-in template: `meson-c-lib`
-- Generates a Meson-based C11 static library project
-- Includes unit test scaffolding, CI, formatting config, and a license file
-- Supports template discovery through package manifests in `src/seed_scaffold/templates/*/template.json`
-
 ## Features
 
 - Placeholder substitution in both file contents and file paths
@@ -108,26 +101,5 @@ seed-scaffold \
 
 - See `docs/ARCHITECTURE.md` for adding templates and maintainer information
 
-## Validation
-
-The repository includes Python tests that cover:
-
-- CLI argument validation
-- placeholder substitution
-- safe output behavior
-- optional git initialization
-- end-to-end Meson configure/build/test for generated projects
-
-Run them with:
-
-```sh
-black --check .
-flake8 .
-python3 -m unittest discover -s tests -v
-```
-
-## Roadmap
-
-- Add more templates beyond Meson/C
-- Expand template manifests with richer metadata and options
-- Publish the package to PyPI once the interface is stable
+For validation details, current scope, and roadmap notes, see
+`docs/ARCHITECTURE.md`.

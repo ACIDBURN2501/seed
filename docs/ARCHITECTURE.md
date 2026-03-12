@@ -10,6 +10,14 @@ works, and how to add a new template safely.
 - Avoid template-specific rename logic in Python
 - Ensure every built-in template can be validated end-to-end
 
+## Current Scope
+
+- Ships with one built-in template: `meson-c-lib`
+- Generates a Meson-based C11 static library project
+- Includes unit test scaffolding, CI, formatting config, and a license file
+- Discovers templates from package manifests in
+  `src/seed_scaffold/templates/*/template.json`
+
 ## Generation Flow
 
 The packaged CLI in `src/seed_scaffold/cli.py` follows this sequence:
@@ -131,6 +139,15 @@ When adding a new template, the minimum acceptable validation is:
 - one test that checks key placeholders were replaced
 - one smoke test for configure/build/test if the template has a build system
 
+Repository validation commands:
+
+```sh
+black --check .
+flake8 .
+python3 -m unittest discover -s tests -v
+python3 -m build
+```
+
 ## Current Constraints
 
 - Manifests are intentionally simple and do not yet support per-template custom
@@ -145,3 +162,10 @@ Likely next improvements:
 - richer manifest schema for template-specific options
 - multiple built-in templates across languages/build systems
 - generated project metadata for repository URLs and badges
+
+## Roadmap
+
+- Add more templates beyond Meson/C
+- Expand template manifests with richer metadata and options
+- Add project metadata inputs for generated repository URLs and badges
+- Publish the package to PyPI once the release process is in place
