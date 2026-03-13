@@ -1,5 +1,7 @@
 # seed-scaffold
 
+[![CI](https://github.com/ACIDBURN2501/seed-scaffold/actions/workflows/ci.yml/badge.svg)](https://github.com/ACIDBURN2501/seed-scaffold/actions/workflows/ci.yml)
+
 Reusable project scaffolding for small, opinionated starter templates.
 
 ## Features
