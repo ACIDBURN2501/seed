@@ -13,6 +13,7 @@ from datetime import date
 from pathlib import Path
 from typing import Any, NoReturn, Sequence
 
+from seed_scaffold import __version__
 from seed_scaffold.config import load_config
 
 VERSION_RE = re.compile(r"^\d+\.\d+\.\d+$")
@@ -162,7 +163,7 @@ def build_substitutions(
     args: argparse.Namespace, project_name: str, project_slug: str
 ) -> dict[str, str]:
     """Construct the placeholder mapping used in file contents and paths."""
-    version_major, version_minor, version_patch = args.version.split(".")
+    version_major, version_minor, version_patch = args.proj_version.split(".")
     project_upper = project_slug.upper()
 
     return {
@@ -170,7 +171,7 @@ def build_substitutions(
         "{{PROJECT_SLUG}}": project_slug,
         "{{PROJECT_LOWER}}": project_slug,
         "{{PROJECT_UPPER}}": project_upper,
-        "{{VERSION}}": args.version,
+        "{{VERSION}}": args.proj_version,
         "{{VERSION_MAJOR}}": version_major,
         "{{VERSION_MINOR}}": version_minor,
         "{{VERSION_PATCH}}": version_patch,
@@ -310,6 +311,12 @@ def create_parser(
     parser.add_argument(
         "--version",
         "-v",
+        action="version",
+        version=f"%(prog)s {__version__}",
+    )
+    parser.add_argument(
+        "--proj-version",
+        "-pv",
         help="Initial version in X.Y.Z format (for example: 1.0.0)",
     )
     parser.add_argument(
@@ -417,7 +424,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         flag
         for flag, value in (
             ("--name", args.name),
-            ("--version", args.version),
+            ("--proj-version", args.proj_version),
             ("--description", args.description),
         )
         if value is None
@@ -425,7 +432,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     if missing_args:
         fail(f"Missing required arguments: {', '.join(missing_args)}")
 
-    if not VERSION_RE.fullmatch(args.version):
+    if not VERSION_RE.fullmatch(args.proj_version):
         fail("Version must be in format X.Y.Z (for example: 1.0.0)")
 
     if args.year < 1:

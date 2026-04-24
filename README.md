@@ -64,7 +64,7 @@ Generate a new project:
 seed-scaffold \
     --template meson-c-lib \
     --name "My Library" \
-    --version 1.0.0 \
+    --proj-version 1.0.0 \
     --description "A small Meson-based C library" \
     --author "Jane Developer" \
     --init-git
@@ -76,7 +76,7 @@ Preview output without writing files:
 seed-scaffold \
     --template meson-c-lib \
     --name "Preview Library" \
-    --version 0.1.0 \
+    --proj-version 0.1.0 \
     --description "Dry-run example" \
     --dry-run
 ```
@@ -102,7 +102,8 @@ For more information, see [`docs/USER_CONFIG.md`](docs/USER_CONFIG.md).
 |---|---|---|---|
 | `--name` | `-n` | Yes* | Human-friendly project name |
 | `--slug` |  | No | Filesystem/API slug; defaults to a sanitized form of `--name` |
-| `--version` | `-v` | Yes* | Initial version in `X.Y.Z` format |
+| `--version` | `-v` | No | Print seed-scaffold version and exit |
+| `--proj-version` | `-pv` | Yes* | Initial version in `X.Y.Z` format |
 | `--description` | `-d` | Yes* | Short project description |
 | `--author` |  | No | Copyright holder for generated files |
 | `--year` |  | No | Copyright year (default: current year) |
