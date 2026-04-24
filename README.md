@@ -33,13 +33,14 @@ This installs the CLI entry point `seed-scaffold`.
 ```sh
 git clone <your-repo-url> seed-scaffold
 cd seed-scaffold
-python3 -m pip install -e .
-python3 -m seed_scaffold --list-templates
+uv venv
+uv pip install -e .
+seed-scaffold --list-templates
 ```
 
 Validation and generated-project smoke tests expect these tools to be available:
 
-- `python3`
+- `uv`
 - `meson`
 - `ninja`
 - a C compiler such as `cc`
@@ -47,7 +48,7 @@ Validation and generated-project smoke tests expect these tools to be available:
 For development tooling, install the package with dev extras:
 
 ```sh
-python3 -m pip install -e .[dev]
+uv pip install -e .[dev]
 ```
 
 ## Usage

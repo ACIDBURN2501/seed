@@ -48,6 +48,11 @@ def get_templates_root() -> Path:
     return get_package_root() / "templates"
 
 
+def get_common_files_dir() -> Path:
+    """Return the directory containing common/shared template files."""
+    return get_templates_root() / "common"
+
+
 def normalize_slug(name: str) -> str:
     """Convert a display name into a filesystem-friendly project slug."""
     slug = re.sub(r"[^A-Za-z0-9]+", "_", name.strip()).strip("_").lower()
@@ -145,6 +150,10 @@ def discover_templates() -> dict[str, TemplateManifest]:
     templates: dict[str, TemplateManifest] = {}
     for template_dir in sorted(templates_root.iterdir()):
         if not template_dir.is_dir():
+            continue
+
+        # Skip the common/ directory used for shared template files.
+        if template_dir.name == "common":
             continue
 
         manifest = load_template_manifest(template_dir)
@@ -254,6 +263,30 @@ def copy_template_file(
     shutil.copystat(src_path, dest_path)
 
 
+def process_common_files(
+    output_dir: Path,
+    substitutions: dict[str, str],
+    dry_run: bool,
+) -> list[Path]:
+    """Copy common/shared files into the destination directory."""
+    common_dir = get_common_files_dir()
+    if not common_dir.is_dir():
+        return []
+
+    rendered_files: list[Path] = []
+
+    for src_path in sorted(common_dir.rglob("*")):
+        if not src_path.is_file():
+            continue
+
+        relative_path = src_path.relative_to(common_dir)
+        dest_path = output_dir / relative_path
+        rendered_files.append(relative_path)
+        copy_template_file(src_path, dest_path, substitutions, dry_run)
+
+    return rendered_files
+
+
 def process_template(
     manifest: TemplateManifest,
     output_dir: Path,
@@ -262,6 +295,11 @@ def process_template(
 ) -> list[Path]:
     """Render all files in a template into the destination directory."""
     rendered_files: list[Path] = []
+
+    # Copy common files first so template-specific files can override them.
+    rendered_files.extend(
+        process_common_files(output_dir, substitutions, dry_run)
+    )
 
     for src_path in sorted(manifest.files_dir.rglob("*")):
         if not src_path.is_file():
