@@ -1,6 +1,6 @@
 # seed-scaffold
 
-[![CI](https://github.com/ACIDBURN2501/seed-scaffold/actions/workflows/ci.yml/badge.svg)](https://github.com/ACIDBURN2501/seed-scaffold/actions/workflows/ci.yml)
+[![CI](https://github.com/aajll/seed-scaffold/actions/workflows/ci.yml/badge.svg)](https://github.com/aajll/seed-scaffold/actions/workflows/ci.yml)
 
 Reusable project scaffolding for small, opinionated starter templates.
 
@@ -99,21 +99,21 @@ For more information, see [`docs/USER_CONFIG.md`](docs/USER_CONFIG.md).
 
 ## Arguments
 
-| Argument | Short | Required | Description |
-|---|---|---|---|
-| `--name` | `-n` | Yes* | Human-friendly project name |
-| `--slug` |  | No | Filesystem/API slug; defaults to a sanitized form of `--name` |
-| `--version` | `-v` | No | Print seed-scaffold version and exit |
-| `--proj-version` | `-pv` | Yes* | Initial version in `X.Y.Z` format |
-| `--description` | `-d` | Yes* | Short project description |
-| `--author` |  | No | Copyright holder for generated files |
-| `--year` |  | No | Copyright year (default: current year) |
-| `--template` |  | No | Template ID to render (default: `meson-c-lib`) |
-| `--output` | `-o` | No | Output directory (default: current directory / project slug) |
-| `--init-git` |  | No | Run `git init` in the generated project |
-| `--dry-run` |  | No | Print planned output without writing files |
-| `--force` |  | No | Allow writing into an existing empty output directory |
-| `--list-templates` |  | No | List available templates and exit |
+| Argument           | Short | Required | Description                                                   |
+| ------------------ | ----- | -------- | ------------------------------------------------------------- |
+| `--name`           | `-n`  | Yes\*    | Human-friendly project name                                   |
+| `--slug`           |       | No       | Filesystem/API slug; defaults to a sanitized form of `--name` |
+| `--version`        | `-v`  | No       | Print seed-scaffold version and exit                          |
+| `--proj-version`   | `-pv` | Yes\*    | Initial version in `X.Y.Z` format                             |
+| `--description`    | `-d`  | Yes\*    | Short project description                                     |
+| `--author`         |       | No       | Copyright holder for generated files                          |
+| `--year`           |       | No       | Copyright year (default: current year)                        |
+| `--template`       |       | No       | Template ID to render (default: `meson-c-lib`)                |
+| `--output`         | `-o`  | No       | Output directory (default: current directory / project slug)  |
+| `--init-git`       |       | No       | Run `git init` in the generated project                       |
+| `--dry-run`        |       | No       | Print planned output without writing files                    |
+| `--force`          |       | No       | Allow writing into an existing empty output directory         |
+| `--list-templates` |       | No       | List available templates and exit                             |
 
 `*` Not required when using `--list-templates`.
 
