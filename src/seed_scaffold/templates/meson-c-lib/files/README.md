@@ -71,3 +71,13 @@ _Add a small list of use case examples_
 | Topic | Note |
 |-------|------|
 | **<Topic>** | <description> |
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for build, style, and test
+conventions. Security concerns should be reported privately as described in
+[SECURITY.md](.github/SECURITY.md).
+
+## License
+
+Released under the MIT License. See [LICENSE](LICENSE) for the full text.

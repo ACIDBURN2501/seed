@@ -1,4 +1,6 @@
 /**
+ * SPDX-License-Identifier: MIT
+ *
  * @file {{PROJECT_SLUG}}.h
  * @brief Public API for {{PROJECT_NAME}}.
  */

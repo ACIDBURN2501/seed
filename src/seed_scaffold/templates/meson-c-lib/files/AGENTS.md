@@ -52,9 +52,12 @@ meson test -C build --verbose
 - Keep public headers minimal and stable.
 - Prefer explicit fixed-width integer types when ABI or serialization matters.
 - Use `{{PROJECT_SLUG}}_conf.h` for compile-time configuration options. This header is automatically included by `{{PROJECT_SLUG}}.h` and can be overridden before including the main header.
+- Public sources (`src/*.c`, `include/*.h`) carry an `SPDX-License-Identifier: MIT` tag in their header comment.
 
 ### Testing
 
 - Run `meson test -C build` after changes.
-- Add a test case for each bug fix.
+- Tests are off by default (`build_tests=false`); enable them with `-Dbuild_tests=true`.
+- Add a test case for each bug fix and each new feature.
 - Keep tests in `tests/test_*.c`.
+- CI enforces an 80% line / 70% branch coverage gate.
