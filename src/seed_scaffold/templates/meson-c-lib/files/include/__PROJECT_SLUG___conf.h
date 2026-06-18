@@ -1,4 +1,6 @@
 /**
+ * SPDX-License-Identifier: MIT
+ *
  * @file {{PROJECT_SLUG}}_conf.h
  * @brief Public configuration header for {{PROJECT_NAME}}.
  *
