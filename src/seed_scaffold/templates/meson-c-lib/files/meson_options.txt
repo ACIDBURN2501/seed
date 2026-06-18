@@ -1,6 +1,10 @@
+# === Build personality ========================================================
+# By default tests are disabled so downstream consumers pulling this in as a
+# subproject build only the library. Enable them with -Dbuild_tests=true (CI
+# and local development opt in explicitly).
 option(
   'build_tests',
   type: 'boolean',
-  value: true,
+  value: false,
   description: 'Build and run unit tests',
 )
